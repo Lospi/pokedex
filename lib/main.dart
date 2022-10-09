@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Poppins',
       ),
       home: const MyHomePage(),
     );
@@ -33,12 +34,24 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: const ImageIcon(
+          AssetImage('images/Pokeball.png'),
+          size: 24,
+          color: Colors.black,
+        ),
+        title: const Text('Pokedex',
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+      ),
       body: GridView.builder(
-        itemCount: 20,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        itemCount: 201,
         itemBuilder: (BuildContext context, int index) {
           return Pokemon(index: index);
         },
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           childAspectRatio: 0.93,
         ),
