@@ -63,6 +63,9 @@ flutter:
   uses-material-design: true
   assets:
     - images/Pokeball.png
+    - images/PokeballTransparent.png
+    - images/Height.png
+    - images/Weight.png
 
   fonts:
     - family: Poppins
