@@ -39,6 +39,7 @@ dependencies:
   flutter_bloc: ^8.1.1
   graphql_flutter: ^5.1.0
   http: ^0.13.5
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

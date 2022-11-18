@@ -1,21 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:pokedex/domain/pokemonAPI.dart';
-import 'package:pokedex/domain/pokemonTypeColors.dart';
-import 'package:pokedex/widgets/pokemonStats.dart';
+import 'package:pokedex/data/fetch_pokemon_data.dart';
+import 'package:pokedex/domain/pokemon_type_colors.dart';
+import 'package:pokedex/widgets/pokemon_stats.dart';
 
-Future<PokemonDataAPI> fetchPokemonData(int index) async {
-  final response =
-      await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon/$index'));
-
-  if (response.statusCode == 200) {
-    return PokemonDataAPI.fromJson(jsonDecode(response.body));
-  } else {
-    throw Exception('Failed to load Pokemon');
-  }
-}
+import '../domain/pokemon.dart';
 
 class Pokemon extends StatefulWidget {
   final int index;
@@ -27,8 +15,7 @@ class Pokemon extends StatefulWidget {
 }
 
 class _PokemonState extends State<Pokemon> {
-  late Future<PokemonDataAPI> futurePokemon =
-      fetchPokemonData(widget.index + 1);
+  late Future<PokemonData> futurePokemon = fetchPokemonData(widget.index + 1);
   Color pokemonColor = Colors.green;
 
   @override
@@ -39,13 +26,12 @@ class _PokemonState extends State<Pokemon> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<PokemonDataAPI>(
+    return FutureBuilder<PokemonData>(
         future: futurePokemon,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             var pokemon = snapshot.data!;
-            pokemonColor =
-                PokemonTypeColors.getColorByType(pokemon.getMainType())!;
+            pokemonColor = PokemonTypeColors.getColorByType(pokemon.types[0])!;
             return Card(
                 margin: const EdgeInsets.all(8),
                 clipBehavior: Clip.antiAlias,
@@ -69,7 +55,7 @@ class _PokemonState extends State<Pokemon> {
                         alignment: Alignment.centerRight,
                         padding:
                             const EdgeInsets.only(left: 8, right: 8, top: 4),
-                        child: Text("#${pokemon.pokemonId}",
+                        child: Text("#${pokemon.id}",
                             style:
                                 TextStyle(color: pokemonColor, fontSize: 10)),
                       ),
@@ -78,7 +64,7 @@ class _PokemonState extends State<Pokemon> {
                           alignment: Alignment.center,
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Image.network(
-                            pokemon.getMainPokemonSprite(),
+                            pokemon.mainSpriteURL,
                           ),
                         ),
                       ),

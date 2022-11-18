@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/domain/pokemonAPI.dart';
-import 'package:pokedex/domain/pokemonTypeColors.dart';
+import 'package:intl/intl.dart';
+import 'package:pokedex/domain/pokemon.dart';
+import 'package:pokedex/domain/pokemon_type_colors.dart';
 
 class PokemonStats extends StatefulWidget {
-  final PokemonDataAPI pokemonDataAPI;
+  final PokemonData pokemonDataAPI;
 
   const PokemonStats({super.key, required this.pokemonDataAPI});
 
@@ -18,27 +19,27 @@ extension StringExtensionStats on String {
 }
 
 class _PokemonStats extends State<PokemonStats> {
-  late PokemonDataAPI pokemonDataAPI;
+  late PokemonData pokemonData;
   late int pokemonTypeCount;
   late int abilitiesCount;
   late int statsCount;
   final children = <Widget>[];
+  final numberFormat = NumberFormat("######0.00");
 
   @override
   void initState() {
     super.initState();
-    pokemonDataAPI = widget.pokemonDataAPI;
-    pokemonTypeCount = pokemonDataAPI.pokemonTypes.length;
-    abilitiesCount = pokemonDataAPI.pokemonAbilities.length;
-    statsCount = pokemonDataAPI.pokemonStats.length;
+    pokemonData = widget.pokemonDataAPI;
+    pokemonTypeCount = pokemonData.types.length;
+    abilitiesCount = pokemonData.abilities.length;
+    statsCount = pokemonData.stats.length;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor:
-          PokemonTypeColors.getColorByType(pokemonDataAPI.getMainType()),
+      backgroundColor: PokemonTypeColors.getColorByType(pokemonData.types[0]),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -47,7 +48,7 @@ class _PokemonStats extends State<PokemonStats> {
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Center(
               child: Text(
-                '#${pokemonDataAPI.pokemonId}',
+                '#${pokemonData.id}',
                 style: const TextStyle(
                     color: Colors.white,
                     fontFamily: 'Poppins',
@@ -58,7 +59,7 @@ class _PokemonStats extends State<PokemonStats> {
           )
         ],
         title: Text(
-          pokemonDataAPI.pokemonName.capitalize(),
+          pokemonData.pokemonName.capitalize(),
           style: const TextStyle(
               color: Colors.white,
               fontFamily: 'Poppins',
@@ -95,13 +96,11 @@ class _PokemonStats extends State<PokemonStats> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: PokemonTypeColors.getColorByType(
-                                      pokemonDataAPI.getTypeNameByIndex(i))),
+                                      pokemonData.types[i])),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 8, vertical: 2),
                               child: Text(
-                                pokemonDataAPI
-                                    .getTypeNameByIndex(i)
-                                    .capitalize(),
+                                pokemonData.types[i].capitalize(),
                                 style: const TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'Poppins',
@@ -115,7 +114,7 @@ class _PokemonStats extends State<PokemonStats> {
                       'About',
                       style: TextStyle(
                           color: PokemonTypeColors.getColorByType(
-                              pokemonDataAPI.getMainType()),
+                              pokemonData.types[0]),
                           fontFamily: 'Poppins',
                           fontSize: 14,
                           fontWeight: FontWeight.bold),
@@ -130,7 +129,8 @@ class _PokemonStats extends State<PokemonStats> {
                               children: [
                                 Image.asset('images/Weight.png'),
                                 const SizedBox(width: 8),
-                                Text('${pokemonDataAPI.pokemonWeight / 10} kg')
+                                Text(
+                                    '${numberFormat.format(pokemonData.weight / 10)} kg')
                               ],
                             ),
                             const SizedBox(height: 8),
@@ -150,7 +150,8 @@ class _PokemonStats extends State<PokemonStats> {
                               children: [
                                 Image.asset('images/Height.png'),
                                 const SizedBox(width: 8),
-                                Text('${pokemonDataAPI.pokemonHeight / 10} m')
+                                Text(
+                                    '${numberFormat.format(pokemonData.height / 10)} m')
                               ],
                             ),
                             const SizedBox(height: 8),
@@ -168,9 +169,7 @@ class _PokemonStats extends State<PokemonStats> {
                           children: [
                             for (var i = 0; i < abilitiesCount; i++)
                               Text(
-                                pokemonDataAPI
-                                    .getPokemonAbilityByIndex(i)
-                                    .capitalize(),
+                                pokemonData.abilities[i].capitalize(),
                                 style: const TextStyle(fontSize: 12),
                               ),
                             const SizedBox(width: 4),
@@ -190,7 +189,7 @@ class _PokemonStats extends State<PokemonStats> {
                       'Base Stats',
                       style: TextStyle(
                           color: PokemonTypeColors.getColorByType(
-                              pokemonDataAPI.getMainType()),
+                              pokemonData.types[0]),
                           fontFamily: 'Poppins',
                           fontSize: 14,
                           fontWeight: FontWeight.bold),
@@ -204,12 +203,10 @@ class _PokemonStats extends State<PokemonStats> {
                             children: [
                               for (var i = 0; i < statsCount; i++)
                                 Text(
-                                  pokemonDataAPI
-                                      .getPokemonStatNameByIndex(i)
-                                      .toUpperCase(),
+                                  pokemonData.stats[i].name.toUpperCase(),
                                   style: TextStyle(
                                       color: PokemonTypeColors.getColorByType(
-                                          pokemonDataAPI.getMainType()),
+                                          pokemonData.types[0]),
                                       fontFamily: 'Poppins',
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold),
@@ -225,9 +222,7 @@ class _PokemonStats extends State<PokemonStats> {
                           Column(
                             children: [
                               for (var i = 0; i < statsCount; i++)
-                                Text(pokemonDataAPI
-                                    .getPokemonStatByIndex(i)
-                                    .toString()),
+                                Text(pokemonData.stats[i].value.toString()),
                             ],
                           ),
                           Column(
@@ -241,8 +236,8 @@ class _PokemonStats extends State<PokemonStats> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 for (var i = 0; i < statsCount; i++)
-                                  Container(
-                                    margin:
+                                  Padding(
+                                    padding:
                                         const EdgeInsets.symmetric(vertical: 4),
                                     child: ClipRRect(
                                       borderRadius: const BorderRadius.all(
@@ -251,12 +246,10 @@ class _PokemonStats extends State<PokemonStats> {
                                         minHeight: 13,
                                         backgroundColor: Colors.grey,
                                         color: PokemonTypeColors.getColorByType(
-                                            pokemonDataAPI.getMainType()),
+                                            pokemonData.types[0]),
                                         semanticsLabel:
                                             'Linear progress indicator',
-                                        value: pokemonDataAPI
-                                                .getPokemonStatByIndex(i) /
-                                            248,
+                                        value: pokemonData.stats[i].value / 248,
                                       ),
                                     ),
                                   )
@@ -277,8 +270,7 @@ class _PokemonStats extends State<PokemonStats> {
                     aspectRatio: 1,
                     child: FittedBox(
                         fit: BoxFit.fill,
-                        child: Image.network(
-                            pokemonDataAPI.getMainPokemonSprite())),
+                        child: Image.network(pokemonData.mainSpriteURL)),
                   ),
                 ),
               ),
