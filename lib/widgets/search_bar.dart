@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokedex/search_cubit.dart';
 
 class SearchBar extends StatelessWidget {
-  const SearchBar({
+  SearchBar({
     Key? key,
   }) : super(key: key);
 
@@ -12,6 +12,9 @@ class SearchBar extends StatelessWidget {
     return BlocProvider(
       create: (context) => SearchCubit(),
       child: TextField(
+        onChanged: (text) {
+          context.read<SearchCubit>().setSearchText(text);
+        },
         textAlign: TextAlign.center,
         decoration: InputDecoration(
             isDense: true,

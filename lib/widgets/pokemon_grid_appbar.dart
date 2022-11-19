@@ -10,10 +10,10 @@ class GridAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      bottom: const PreferredSize(
-        preferredSize: Size.fromHeight(40),
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(40),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
           child: SearchBar(),
         ),
       ),
