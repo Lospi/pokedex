@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'widgets/pokemon_grid.dart';
+import 'package:pokedex/grid_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'Poppins',
       ),
-      home: const PokemonGrid(),
+      home: const GridPage(),
     );
   }
 }
