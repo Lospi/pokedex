@@ -26,7 +26,7 @@ class Pokemon extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) =>
-                        PokemonStats(pokemonDataAPI: pokemonData)));
+                        PokemonStats(pokemonData: pokemonData)));
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

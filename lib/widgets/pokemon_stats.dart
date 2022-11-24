@@ -3,37 +3,18 @@ import 'package:intl/intl.dart';
 import 'package:pokedex/domain/pokemon.dart';
 import 'package:pokedex/domain/pokemon_type_colors.dart';
 
-class PokemonStats extends StatefulWidget {
-  final PokemonData pokemonDataAPI;
-
-  const PokemonStats({super.key, required this.pokemonDataAPI});
-
-  @override
-  State<PokemonStats> createState() => _PokemonStats();
-}
-
 extension StringExtensionStats on String {
   String capitalize() {
     return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
   }
 }
 
-class _PokemonStats extends State<PokemonStats> {
-  late PokemonData pokemonData;
-  late int pokemonTypeCount;
-  late int abilitiesCount;
-  late int statsCount;
+class PokemonStats extends StatelessWidget {
+  final PokemonData pokemonData;
   final children = <Widget>[];
   final numberFormat = NumberFormat("######0.00");
 
-  @override
-  void initState() {
-    super.initState();
-    pokemonData = widget.pokemonDataAPI;
-    pokemonTypeCount = pokemonData.types.length;
-    abilitiesCount = pokemonData.abilities.length;
-    statsCount = pokemonData.stats.length;
-  }
+  PokemonStats({super.key, required this.pokemonData});
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +71,7 @@ class _PokemonStats extends State<PokemonStats> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        for (var i = 0; i < pokemonTypeCount; i++)
+                        for (var i = 0; i < pokemonData.types.length; i++)
                           Container(
                               margin: const EdgeInsets.symmetric(horizontal: 8),
                               decoration: BoxDecoration(
@@ -167,7 +148,9 @@ class _PokemonStats extends State<PokemonStats> {
                         const SizedBox(width: 24),
                         Column(
                           children: [
-                            for (var i = 0; i < abilitiesCount; i++)
+                            for (var i = 0;
+                                i < pokemonData.abilities.length;
+                                i++)
                               Text(
                                 pokemonData.abilities[i].capitalize(),
                                 style: const TextStyle(fontSize: 12),
@@ -201,7 +184,7 @@ class _PokemonStats extends State<PokemonStats> {
                         children: [
                           Column(
                             children: [
-                              for (var i = 0; i < statsCount; i++)
+                              for (var i = 0; i < pokemonData.stats.length; i++)
                                 Text(
                                   pokemonData.stats[i].name.toUpperCase(),
                                   style: TextStyle(
@@ -215,19 +198,19 @@ class _PokemonStats extends State<PokemonStats> {
                           ),
                           Column(
                             children: [
-                              for (var i = 0; i < statsCount; i++)
+                              for (var i = 0; i < pokemonData.stats.length; i++)
                                 const SizedBox(width: 24)
                             ],
                           ),
                           Column(
                             children: [
-                              for (var i = 0; i < statsCount; i++)
+                              for (var i = 0; i < pokemonData.stats.length; i++)
                                 Text(pokemonData.stats[i].value.toString()),
                             ],
                           ),
                           Column(
                             children: [
-                              for (var i = 0; i < statsCount; i++)
+                              for (var i = 0; i < pokemonData.stats.length; i++)
                                 const SizedBox(width: 16)
                             ],
                           ),
@@ -235,7 +218,9 @@ class _PokemonStats extends State<PokemonStats> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                for (var i = 0; i < statsCount; i++)
+                                for (var i = 0;
+                                    i < pokemonData.stats.length;
+                                    i++)
                                   Padding(
                                     padding:
                                         const EdgeInsets.symmetric(vertical: 4),
