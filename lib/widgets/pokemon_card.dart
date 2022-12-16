@@ -9,6 +9,13 @@ class Pokemon extends StatelessWidget {
 
   const Pokemon({super.key, required this.pokemonData});
 
+  void openStats(BuildContext context) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => PokemonStats(pokemonData: pokemonData)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -19,13 +26,7 @@ class Pokemon extends StatelessWidget {
             side: BorderSide(color: pokemonData.pokemonTypeColors.first),
             borderRadius: const BorderRadius.all(Radius.circular(8))),
         child: InkWell(
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        PokemonStats(pokemonData: pokemonData)));
-          },
+          onTap: () => openStats(context),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
