@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Stat {
   final int value;
   final String name;
@@ -17,6 +19,7 @@ class PokemonData {
   final List<Stat> stats;
   final List<String> types;
   final String mainSpriteURL;
+  final List<Color> pokemonTypeColors;
 
   PokemonData(
       {required this.abilities,
@@ -26,5 +29,6 @@ class PokemonData {
       required this.stats,
       required this.types,
       required this.mainSpriteURL,
-      required this.pokemonName});
+      required this.pokemonName,
+      required this.pokemonTypeColors});
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/domain/pokemon_type_colors.dart';
 import 'package:pokedex/widgets/pokemon_stats.dart';
 
 import '../domain/pokemon.dart';
@@ -11,14 +10,12 @@ class Pokemon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pokemonColor =
-        PokemonTypeColors.getColorByType(pokemonData.types[0])!;
     return Card(
         margin: const EdgeInsets.all(8),
         clipBehavior: Clip.antiAlias,
         color: Colors.white,
         shape: RoundedRectangleBorder(
-            side: BorderSide(color: pokemonColor),
+            side: BorderSide(color: pokemonData.pokemonTypeColors.first),
             borderRadius: const BorderRadius.all(Radius.circular(8))),
         child: InkWell(
           onTap: () {
@@ -36,7 +33,9 @@ class Pokemon extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 padding: const EdgeInsets.only(left: 8, right: 8, top: 4),
                 child: Text("#${pokemonData.id}",
-                    style: TextStyle(color: pokemonColor, fontSize: 10)),
+                    style: TextStyle(
+                        color: pokemonData.pokemonTypeColors.first,
+                        fontSize: 10)),
               ),
               Expanded(
                 child: Container(
@@ -50,7 +49,7 @@ class Pokemon extends StatelessWidget {
               Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                color: pokemonColor,
+                color: pokemonData.pokemonTypeColors.first,
                 child: Text(
                   pokemonData.pokemonName.capitalize(),
                   style: const TextStyle(

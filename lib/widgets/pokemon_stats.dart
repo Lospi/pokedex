@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pokedex/domain/pokemon.dart';
-import 'package:pokedex/domain/pokemon_type_colors.dart';
 
 extension StringExtensionStats on String {
   String capitalize() {
@@ -20,7 +19,7 @@ class PokemonStats extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: PokemonTypeColors.getColorByType(pokemonData.types[0]),
+      backgroundColor: pokemonData.pokemonTypeColors.first,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -76,8 +75,7 @@ class PokemonStats extends StatelessWidget {
                               margin: const EdgeInsets.symmetric(horizontal: 8),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: PokemonTypeColors.getColorByType(
-                                      pokemonData.types[i])),
+                                  color: pokemonData.pokemonTypeColors[i]),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 8, vertical: 2),
                               child: Text(
@@ -94,8 +92,7 @@ class PokemonStats extends StatelessWidget {
                     Text(
                       'About',
                       style: TextStyle(
-                          color: PokemonTypeColors.getColorByType(
-                              pokemonData.types[0]),
+                          color: pokemonData.pokemonTypeColors.first,
                           fontFamily: 'Poppins',
                           fontSize: 14,
                           fontWeight: FontWeight.bold),
@@ -171,8 +168,7 @@ class PokemonStats extends StatelessWidget {
                     Text(
                       'Base Stats',
                       style: TextStyle(
-                          color: PokemonTypeColors.getColorByType(
-                              pokemonData.types[0]),
+                          color: pokemonData.pokemonTypeColors.first,
                           fontFamily: 'Poppins',
                           fontSize: 14,
                           fontWeight: FontWeight.bold),
@@ -188,8 +184,8 @@ class PokemonStats extends StatelessWidget {
                                 Text(
                                   pokemonData.stats[i].name.toUpperCase(),
                                   style: TextStyle(
-                                      color: PokemonTypeColors.getColorByType(
-                                          pokemonData.types[0]),
+                                      color:
+                                          pokemonData.pokemonTypeColors.first,
                                       fontFamily: 'Poppins',
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold),
@@ -230,8 +226,8 @@ class PokemonStats extends StatelessWidget {
                                       child: LinearProgressIndicator(
                                         minHeight: 13,
                                         backgroundColor: Colors.grey,
-                                        color: PokemonTypeColors.getColorByType(
-                                            pokemonData.types[0]),
+                                        color:
+                                            pokemonData.pokemonTypeColors.first,
                                         semanticsLabel:
                                             'Linear progress indicator',
                                         value: pokemonData.stats[i].value / 248,

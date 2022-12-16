@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:pokedex/domain/pokemon_type_colors.dart';
+
 import '../domain/pokemon.dart';
 
 class PokemonAPIData {
@@ -36,10 +39,17 @@ class PokemonAPIData {
 
   PokemonData toPokemon() {
     final List<Stat> statsList = List.empty(growable: true);
+    final List<Color> colorsList = List.empty(growable: true);
+    final List<String> pokemonTypes =
+        types!.map<String>((e) => e.type?.name ?? "").toList(growable: true);
 
     for (var i = 0; i < stats!.length; i++) {
       statsList
           .add(Stat(value: stats![i].baseStat!, name: stats![i].stat!.name!));
+    }
+
+    for (var i = 0; i < types!.length; i++) {
+      colorsList.add(PokemonTypeColors.getColorByType(pokemonTypes[i])!);
     }
 
     return PokemonData(
@@ -49,11 +59,11 @@ class PokemonAPIData {
       id: id!,
       weight: weight! / 10,
       height: height! / 10,
-      types:
-          types!.map<String>((e) => e.type?.name ?? "").toList(growable: true),
+      types: pokemonTypes,
       stats: statsList,
       mainSpriteURL: sprites!.frontDefault!,
       pokemonName: name!,
+      pokemonTypeColors: colorsList,
     );
   }
 
