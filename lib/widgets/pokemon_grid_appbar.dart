@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'search_bar.dart';
-
 class GridAppBar extends StatelessWidget implements PreferredSizeWidget {
   const GridAppBar({super.key});
 
@@ -10,13 +8,6 @@ class GridAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(40),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-          child: SearchBar(),
-        ),
-      ),
       leading: const ImageIcon(
         AssetImage('images/Pokeball.png'),
         size: 24,
@@ -31,5 +22,5 @@ class GridAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 40);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
