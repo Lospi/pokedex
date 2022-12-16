@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pokedex/domain/pokemon.dart';
-
-extension StringExtensionStats on String {
-  String capitalize() {
-    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
-  }
-}
+import 'package:pokedex/utilities/capitalize_strings.dart';
 
 class PokemonStats extends StatelessWidget {
   final PokemonData pokemonData;
