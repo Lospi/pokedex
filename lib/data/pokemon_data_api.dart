@@ -40,6 +40,8 @@ class PokemonAPIData {
   PokemonData toPokemon() {
     final List<Stat> statsList = List.empty(growable: true);
     final List<Color> colorsList = List.empty(growable: true);
+    final List<PhysicalAttribute> physicalAttributesList =
+        List.empty(growable: true);
     final List<String> pokemonTypes =
         types!.map<String>((e) => e.type?.name ?? "").toList(growable: true);
 
@@ -52,13 +54,21 @@ class PokemonAPIData {
       colorsList.add(PokemonTypeColors.getColorByType(pokemonTypes[i])!);
     }
 
+    physicalAttributesList.add(PhysicalAttribute(
+        attribute: "Weight",
+        attributeValue: weight! / 10,
+        attributeIcon: Image.asset("images/Weight.png")));
+    physicalAttributesList.add(PhysicalAttribute(
+        attribute: "Height",
+        attributeValue: height! / 10,
+        attributeIcon: Image.asset("images/Height.png")));
+
     return PokemonData(
       abilities: abilities!
           .map<String>((e) => e.ability?.name ?? "")
           .toList(growable: true),
       id: id!,
-      weight: weight! / 10,
-      height: height! / 10,
+      physicalAttributes: physicalAttributesList,
       types: pokemonTypes,
       stats: statsList,
       mainSpriteURL: sprites!.frontDefault!,

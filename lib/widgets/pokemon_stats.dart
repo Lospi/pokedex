@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pokedex/domain/pokemon.dart';
 import 'package:pokedex/utilities/capitalize_strings.dart';
+import 'package:pokedex/widgets/pokemon_moves.dart';
+import 'package:pokedex/widgets/pokemon_physical_attribute.dart';
+import 'package:pokedex/widgets/pokemon_stats_bars.dart';
 
 class PokemonStats extends StatelessWidget {
   final PokemonData pokemonData;
@@ -96,66 +99,20 @@ class PokemonStats extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Column(
-                          children: [
-                            Row(
-                              children: [
-                                Image.asset('images/Weight.png'),
-                                const SizedBox(width: 8),
-                                Text(
-                                    '${numberFormat.format(pokemonData.weight / 10)} kg')
-                              ],
+                        for (var i = 0;
+                            i < pokemonData.physicalAttributes.length;
+                            i++)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            child: PokemonPhysicalAttribute(
+                              numberFormat: numberFormat,
+                              pokemonPhysicalAttribute:
+                                  pokemonData.physicalAttributes[i],
                             ),
-                            const SizedBox(height: 8),
-                            const Text(
-                              'Weight',
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 10,
-                                  fontFamily: 'Poppins'),
-                            )
-                          ],
-                        ),
-                        const SizedBox(width: 24),
-                        Column(
-                          children: [
-                            Row(
-                              children: [
-                                Image.asset('images/Height.png'),
-                                const SizedBox(width: 8),
-                                Text(
-                                    '${numberFormat.format(pokemonData.height / 10)} m')
-                              ],
-                            ),
-                            const SizedBox(height: 8),
-                            const Text(
-                              'Height',
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 10,
-                                  fontFamily: 'Poppins'),
-                            )
-                          ],
-                        ),
-                        const SizedBox(width: 24),
-                        Column(
-                          children: [
-                            for (var i = 0;
-                                i < pokemonData.abilities.length;
-                                i++)
-                              Text(
-                                pokemonData.abilities[i].capitalize(),
-                                style: const TextStyle(fontSize: 12),
-                              ),
-                            const SizedBox(width: 4),
-                            const Text(
-                              'Moves',
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 10,
-                                  fontFamily: 'Poppins'),
-                            ),
-                          ],
+                          ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: PokemonMoves(pokemonData: pokemonData),
                         ),
                       ],
                     ),
@@ -169,72 +126,7 @@ class PokemonStats extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 16),
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        children: [
-                          Column(
-                            children: [
-                              for (var i = 0; i < pokemonData.stats.length; i++)
-                                Text(
-                                  pokemonData.stats[i].name.toUpperCase(),
-                                  style: TextStyle(
-                                      color:
-                                          pokemonData.pokemonTypeColors.first,
-                                      fontFamily: 'Poppins',
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              for (var i = 0; i < pokemonData.stats.length; i++)
-                                const SizedBox(width: 24)
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              for (var i = 0; i < pokemonData.stats.length; i++)
-                                Text(pokemonData.stats[i].value.toString()),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              for (var i = 0; i < pokemonData.stats.length; i++)
-                                const SizedBox(width: 16)
-                            ],
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                for (var i = 0;
-                                    i < pokemonData.stats.length;
-                                    i++)
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 4),
-                                    child: ClipRRect(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(8)),
-                                      child: LinearProgressIndicator(
-                                        minHeight: 13,
-                                        backgroundColor: Colors.grey,
-                                        color:
-                                            pokemonData.pokemonTypeColors.first,
-                                        semanticsLabel:
-                                            'Linear progress indicator',
-                                        value: pokemonData.stats[i].value / 248,
-                                      ),
-                                    ),
-                                  )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    )
+                    PokemonStatsBars(pokemonData: pokemonData)
                   ],
                 ),
               ),

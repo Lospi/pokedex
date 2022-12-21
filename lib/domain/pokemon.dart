@@ -10,12 +10,23 @@ class Stat {
   });
 }
 
+class PhysicalAttribute {
+  final String attribute;
+  final double attributeValue;
+  final Image attributeIcon;
+
+  PhysicalAttribute({
+    required this.attribute,
+    required this.attributeValue,
+    required this.attributeIcon,
+  });
+}
+
 class PokemonData {
   final String pokemonName;
   final List<String> abilities;
   final int id;
-  final double weight;
-  final double height;
+  final List<PhysicalAttribute> physicalAttributes;
   final List<Stat> stats;
   final List<String> types;
   final String mainSpriteURL;
@@ -24,8 +35,7 @@ class PokemonData {
   PokemonData(
       {required this.abilities,
       required this.id,
-      required this.height,
-      required this.weight,
+      required this.physicalAttributes,
       required this.stats,
       required this.types,
       required this.mainSpriteURL,
