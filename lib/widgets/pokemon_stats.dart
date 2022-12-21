@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:pokedex/domain/pokemon.dart';
+import 'package:pokedex/domain/entities/pokemon.dart';
 import 'package:pokedex/utilities/capitalize_strings.dart';
 import 'package:pokedex/widgets/pokemon_moves.dart';
 import 'package:pokedex/widgets/pokemon_physical_attribute.dart';

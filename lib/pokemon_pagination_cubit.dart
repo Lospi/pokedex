@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:pokedex/domain/use_case/number_pages_use_case.dart';
 import 'package:pokedex/domain/use_case/pokemon_list_use_case.dart';
 
-import 'domain/pokemon.dart';
+import 'domain/entities/pokemon.dart';
 
 part 'pokemon_pagination_state.dart';
 

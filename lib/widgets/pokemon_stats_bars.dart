@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/domain/pokemon.dart';
+import 'package:pokedex/domain/entities/pokemon.dart';
 
 class PokemonStatsBars extends StatelessWidget {
   const PokemonStatsBars({

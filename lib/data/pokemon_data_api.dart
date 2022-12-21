@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/domain/pokemon_type_colors.dart';
+import 'package:pokedex/domain/entities/pokemon_type_colors.dart';
 
-import '../domain/pokemon.dart';
+import '../domain/entities/pokemon.dart';
 
 class PokemonAPIData {
   List<Abilities>? abilities;

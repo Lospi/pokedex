@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/utilities/capitalize_strings.dart';
 import 'package:pokedex/widgets/pokemon_stats.dart';
 
-import '../domain/pokemon.dart';
+import '../domain/entities/pokemon.dart';
 
 class Pokemon extends StatelessWidget {
   final PokemonData pokemonData;

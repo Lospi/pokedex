@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/domain/pokemon.dart';
+import 'package:pokedex/domain/entities/pokemon.dart';
 import 'package:pokedex/utilities/capitalize_strings.dart';
 
 class PokemonMoves extends StatelessWidget {

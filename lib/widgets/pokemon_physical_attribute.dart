@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:pokedex/domain/pokemon.dart';
+import 'package:pokedex/domain/entities/pokemon.dart';
 
 class PokemonPhysicalAttribute extends StatelessWidget {
   const PokemonPhysicalAttribute({

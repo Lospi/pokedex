@@ -1,4 +1,4 @@
-import '../pokemon.dart';
+import '../entities/pokemon.dart';
 
 abstract class PokeAPIProvider {
   Future<int?> getTotalPokemonCount();

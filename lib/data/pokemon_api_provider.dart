@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:pokedex/domain/data/poke_api_provider.dart';
 import 'package:pokedex/utilities/json_decode_helper.dart';
 
-import '../domain/pokemon.dart';
+import '../domain/entities/pokemon.dart';
 import 'pokemon_API.dart';
 import 'pokemon_data_api.dart';
 
