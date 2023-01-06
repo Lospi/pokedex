@@ -11,9 +11,11 @@ class Pokemon extends StatelessWidget {
 
   void openStats(BuildContext context) {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => PokemonStats(pokemonData: pokemonData)));
+      context,
+      MaterialPageRoute(
+        builder: (context) => PokemonStats(pokemonData: pokemonData),
+      ),
+    );
   }
 
   @override
