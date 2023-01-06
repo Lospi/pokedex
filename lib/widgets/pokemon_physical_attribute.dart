@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:pokedex/domain/entities/pokemon.dart';
 
 class PokemonPhysicalAttribute extends StatelessWidget {
   const PokemonPhysicalAttribute({
     Key? key,
-    required this.numberFormat,
     required this.pokemonPhysicalAttribute,
   }) : super(key: key);
 
-  final NumberFormat numberFormat;
   final PhysicalAttribute pokemonPhysicalAttribute;
 
   @override
@@ -21,7 +18,7 @@ class PokemonPhysicalAttribute extends StatelessWidget {
             pokemonPhysicalAttribute.attributeIcon,
             const SizedBox(width: 8),
             Text(
-                '${numberFormat.format(pokemonPhysicalAttribute.attributeValue / 10)} kg')
+                '${(pokemonPhysicalAttribute.attributeValue / 10).toStringAsFixed(2)} kg')
           ],
         ),
         const SizedBox(height: 8),

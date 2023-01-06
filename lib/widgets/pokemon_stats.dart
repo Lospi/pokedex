@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:pokedex/domain/entities/pokemon.dart';
 import 'package:pokedex/utilities/capitalize_strings.dart';
 import 'package:pokedex/widgets/pokemon_moves.dart';
@@ -9,7 +8,6 @@ import 'package:pokedex/widgets/pokemon_stats_bars.dart';
 class PokemonStats extends StatelessWidget {
   final PokemonData pokemonData;
   final children = <Widget>[];
-  final numberFormat = NumberFormat("######0.00");
 
   PokemonStats({super.key, required this.pokemonData});
 
@@ -70,20 +68,21 @@ class PokemonStats extends StatelessWidget {
                       children: [
                         for (var i = 0; i < pokemonData.types.length; i++)
                           Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 8),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: pokemonData.pokemonTypeColors[i]),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8, vertical: 2),
-                              child: Text(
-                                pokemonData.types[i].capitalize(),
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Poppins',
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold),
-                              )),
+                            margin: const EdgeInsets.symmetric(horizontal: 8),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: pokemonData.pokemonTypeColors[i]),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 2),
+                            child: Text(
+                              pokemonData.types[i].capitalize(),
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Poppins',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
                       ],
                     ),
                     const SizedBox(height: 16),
@@ -105,7 +104,6 @@ class PokemonStats extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 12),
                             child: PokemonPhysicalAttribute(
-                              numberFormat: numberFormat,
                               pokemonPhysicalAttribute:
                                   pokemonData.physicalAttributes[i],
                             ),
