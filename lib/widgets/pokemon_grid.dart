@@ -25,8 +25,29 @@ class PokemonGrid extends StatelessWidget {
                       if (!currentState.isLoadingNextPage &&
                           scrollNotification.metrics.pixels >=
                               scrollNotification.metrics.maxScrollExtent *
-                                  0.8) {
+                                  0.95) {
                         cubit.getNextPage();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            duration: const Duration(seconds: 2),
+                            content: Row(
+                              children: const [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 24, vertical: 8),
+                                  child: CircularProgressIndicator(),
+                                ),
+                                Text(
+                                  "Loading more pokemons",
+                                  style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
                       }
                       return true;
                     },
