@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:pokedex/data/pokemon_api_provider.dart';
+import 'package:pokedex/data/poke_api_provider_impl.dart';
 import 'package:pokedex/domain/data/poke_api_provider.dart';
 import 'package:pokedex/domain/use_case/number_pages_use_case.dart';
 import 'package:pokedex/domain/use_case/pokemon_list_use_case.dart';
