@@ -38,10 +38,13 @@ class Pokemon extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 8, right: 8, top: 4),
                 child: Hero(
                   tag: pokemonData.id,
-                  child: Text("#${pokemonData.id}",
-                      style: TextStyle(
-                          color: pokemonData.pokemonTypeColors.first,
-                          fontSize: 10)),
+                  child: Material(
+                    type: MaterialType.transparency,
+                    child: Text("#${pokemonData.id}",
+                        style: TextStyle(
+                            color: pokemonData.pokemonTypeColors.first,
+                            fontSize: 10)),
+                  ),
                 ),
               ),
               Expanded(
@@ -62,12 +65,15 @@ class Pokemon extends StatelessWidget {
                 color: pokemonData.pokemonTypeColors.first,
                 child: Hero(
                   tag: '${pokemonData.id}_name',
-                  child: Text(
-                    pokemonData.pokemonName.capitalize(),
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Poppins',
-                      fontSize: 10,
+                  child: Material(
+                    type: MaterialType.transparency,
+                    child: Text(
+                      pokemonData.pokemonName.capitalize(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Poppins',
+                        fontSize: 10,
+                      ),
                     ),
                   ),
                 ),

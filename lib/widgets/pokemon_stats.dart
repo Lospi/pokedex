@@ -25,13 +25,16 @@ class PokemonStats extends StatelessWidget {
             child: Center(
               child: Hero(
                 tag: pokemonData.id,
-                child: Text(
-                  '#${pokemonData.id}',
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Poppins',
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
+                child: Material(
+                  type: MaterialType.transparency,
+                  child: Text(
+                    '#${pokemonData.id}',
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Poppins',
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),
@@ -39,13 +42,16 @@ class PokemonStats extends StatelessWidget {
         ],
         title: Hero(
           tag: '${pokemonData.id}_name',
-          child: Text(
-            pokemonData.pokemonName.capitalize(),
-            style: const TextStyle(
-                color: Colors.white,
-                fontFamily: 'Poppins',
-                fontSize: 24,
-                fontWeight: FontWeight.bold),
+          child: Material(
+            type: MaterialType.transparency,
+            child: Text(
+              pokemonData.pokemonName.capitalize(),
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Poppins',
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+            ),
           ),
         ),
       ),
