@@ -23,24 +23,30 @@ class PokemonStats extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Center(
-              child: Text(
-                '#${pokemonData.id}',
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'Poppins',
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold),
+              child: Hero(
+                tag: pokemonData.id,
+                child: Text(
+                  '#${pokemonData.id}',
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Poppins',
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           )
         ],
-        title: Text(
-          pokemonData.pokemonName.capitalize(),
-          style: const TextStyle(
-              color: Colors.white,
-              fontFamily: 'Poppins',
-              fontSize: 24,
-              fontWeight: FontWeight.bold),
+        title: Hero(
+          tag: '${pokemonData.id}_name',
+          child: Text(
+            pokemonData.pokemonName.capitalize(),
+            style: const TextStyle(
+                color: Colors.white,
+                fontFamily: 'Poppins',
+                fontSize: 24,
+                fontWeight: FontWeight.bold),
+          ),
         ),
       ),
       body: Stack(
@@ -136,7 +142,9 @@ class PokemonStats extends StatelessWidget {
                     aspectRatio: 1,
                     child: FittedBox(
                         fit: BoxFit.fill,
-                        child: Image.network(pokemonData.mainSpriteURL)),
+                        child: Hero(
+                            tag: '${pokemonData.id}_sprite',
+                            child: Image.network(pokemonData.mainSpriteURL))),
                   ),
                 ),
               ),

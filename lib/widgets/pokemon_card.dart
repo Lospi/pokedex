@@ -36,17 +36,23 @@ class Pokemon extends StatelessWidget {
               Container(
                 alignment: Alignment.centerRight,
                 padding: const EdgeInsets.only(left: 8, right: 8, top: 4),
-                child: Text("#${pokemonData.id}",
-                    style: TextStyle(
-                        color: pokemonData.pokemonTypeColors.first,
-                        fontSize: 10)),
+                child: Hero(
+                  tag: pokemonData.id,
+                  child: Text("#${pokemonData.id}",
+                      style: TextStyle(
+                          color: pokemonData.pokemonTypeColors.first,
+                          fontSize: 10)),
+                ),
               ),
               Expanded(
                 child: Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Image.network(
-                    pokemonData.mainSpriteURL,
+                  child: Hero(
+                    tag: ('${pokemonData.id}_sprite'),
+                    child: Image.network(
+                      pokemonData.mainSpriteURL,
+                    ),
                   ),
                 ),
               ),
@@ -54,10 +60,16 @@ class Pokemon extends StatelessWidget {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 color: pokemonData.pokemonTypeColors.first,
-                child: Text(
-                  pokemonData.pokemonName.capitalize(),
-                  style: const TextStyle(
-                      color: Colors.white, fontFamily: 'Poppins', fontSize: 10),
+                child: Hero(
+                  tag: '${pokemonData.id}_name',
+                  child: Text(
+                    pokemonData.pokemonName.capitalize(),
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Poppins',
+                      fontSize: 10,
+                    ),
+                  ),
                 ),
               )
             ],
