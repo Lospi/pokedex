@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/grid_page.dart';
+import 'package:pokedex/pages/pokemon_list/grid_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

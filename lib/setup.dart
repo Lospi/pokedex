@@ -3,7 +3,7 @@ import 'package:pokedex/data/poke_api_provider_impl.dart';
 import 'package:pokedex/domain/data/poke_api_provider.dart';
 import 'package:pokedex/domain/use_case/number_pages_use_case.dart';
 import 'package:pokedex/domain/use_case/pokemon_list_use_case.dart';
-import 'package:pokedex/pokemon_pagination_cubit.dart';
+import 'package:pokedex/pages/pokemon_list/cubit/pagination/pokemon_pagination_cubit.dart';
 
 void setup() {
   GetIt.I

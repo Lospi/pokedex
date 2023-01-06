@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pokedex/pokemon_pagination_cubit.dart';
-
-import 'pokemon_card.dart';
-import 'pokemon_grid_appbar.dart';
+import 'package:pokedex/pages/pokemon_list/cubit/pagination/pokemon_pagination_cubit.dart';
+import 'package:pokedex/pages/pokemon_list/widgets/pokemon_card.dart';
+import 'package:pokedex/pages/pokemon_list/widgets/pokemon_grid_appbar.dart';
 
 class PokemonGrid extends StatelessWidget {
   const PokemonGrid({super.key});

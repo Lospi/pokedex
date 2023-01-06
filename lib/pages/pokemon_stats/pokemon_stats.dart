@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/domain/entities/pokemon.dart';
+import 'package:pokedex/pages/pokemon_stats/widgets/pokemon_moves.dart';
+import 'package:pokedex/pages/pokemon_stats/widgets/pokemon_physical_attribute.dart';
+import 'package:pokedex/pages/pokemon_stats/widgets/pokemon_stats_bars.dart';
 import 'package:pokedex/utilities/capitalize_strings.dart';
-import 'package:pokedex/widgets/pokemon_moves.dart';
-import 'package:pokedex/widgets/pokemon_physical_attribute.dart';
-import 'package:pokedex/widgets/pokemon_stats_bars.dart';
 
 class PokemonStats extends StatelessWidget {
   final PokemonData pokemonData;
