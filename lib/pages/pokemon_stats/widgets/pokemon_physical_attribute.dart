@@ -18,14 +18,18 @@ class PokemonPhysicalAttribute extends StatelessWidget {
             pokemonPhysicalAttribute.attributeIcon,
             const SizedBox(width: 8),
             Text(
-                '${(pokemonPhysicalAttribute.attributeValue / 10).toStringAsFixed(2)} kg')
+              '${(pokemonPhysicalAttribute.attributeValue / 10).toStringAsFixed(2)} kg',
+            )
           ],
         ),
         const SizedBox(height: 8),
         const Text(
           'Weight',
           style: TextStyle(
-              color: Colors.grey, fontSize: 10, fontFamily: 'Poppins'),
+            color: Colors.grey,
+            fontSize: 10,
+            fontFamily: 'Poppins',
+          ),
         )
       ],
     );
