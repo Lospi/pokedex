@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokedex/search_cubit.dart';
 
 class SearchBar extends StatelessWidget {
-  SearchBar({
+  const SearchBar({
     Key? key,
   }) : super(key: key);
 
