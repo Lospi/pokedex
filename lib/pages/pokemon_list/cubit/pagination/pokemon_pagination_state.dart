@@ -14,6 +14,11 @@ class PokemonPaginationLoading extends PokemonPaginationState {
   List<Object> get props => [];
 }
 
+class PokemonPaginationError extends PokemonPaginationState {
+  @override
+  List<Object> get props => [];
+}
+
 class PokemonPaginationSuccess extends PokemonPaginationState {
   final int totalPage;
   final int currentPage;

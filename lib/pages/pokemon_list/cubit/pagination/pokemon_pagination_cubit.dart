@@ -15,26 +15,30 @@ class PokemonPaginationCubit extends Cubit<PokemonPaginationState> {
       : super(PokemonPaginationInitial());
 
   void getFirstPokemons() async {
-    emit(PokemonPaginationLoading());
-    late final int totalPageCount;
-    late final List<PokemonData> pokemonList;
+    try {
+      emit(PokemonPaginationLoading());
+      late final int totalPageCount;
+      late final List<PokemonData> pokemonList;
 
-    await Future.wait([
-      numberPagesUseCase
-          .getTotalPageCount()
-          .then((pageCount) => totalPageCount = pageCount),
-      pokemonListUseCase
-          .getPokemonList(1)
-          .then((firstPokemonPage) => pokemonList = firstPokemonPage),
-    ]);
+      await Future.wait([
+        numberPagesUseCase
+            .getTotalPageCount()
+            .then((pageCount) => totalPageCount = pageCount),
+        pokemonListUseCase
+            .getPokemonList(1)
+            .then((firstPokemonPage) => pokemonList = firstPokemonPage),
+      ]);
 
-    emit(
-      PokemonPaginationSuccess(
-        totalPage: totalPageCount,
-        currentPage: 1,
-        pokemonList: pokemonList,
-      ),
-    );
+      emit(
+        PokemonPaginationSuccess(
+          totalPage: totalPageCount,
+          currentPage: 1,
+          pokemonList: pokemonList,
+        ),
+      );
+    } catch (e) {
+      emit(PokemonPaginationError());
+    }
   }
 
   void getNextPage() async {
